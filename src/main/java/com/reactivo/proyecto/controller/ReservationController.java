@@ -3,13 +3,20 @@ package com.reactivo.proyecto.controller;
 
 import com.reactivo.proyecto.ReservationEvent;
 import com.reactivo.proyecto.utils.ReservationFilters;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import java.awt.*;
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/reservations")
 public class ReservationController {
 
-
+    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ReservationEvent> streamReservations(){
 
         ReservationEvent r1 = new ReservationEvent("1", "Belen", 150.0, List.of("mabe@gmail.com"));
